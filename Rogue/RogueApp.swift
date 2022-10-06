@@ -1,17 +1,17 @@
-//
-//  RogueApp.swift
-//  Rogue
-//
-//  Created by Denis on 04.11.2020.
-//
-
 import SwiftUI
 
 @main
 struct RogueApp: App {
+    var hero = HeroController()
+    var instance = InstanceController()
+    var state = StateController()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(hero)
+                .environmentObject(instance)
+                .environmentObject(state)
         }
     }
 }

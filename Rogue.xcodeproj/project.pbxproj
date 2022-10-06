@@ -7,19 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9269886B25667C2F00205699 /* Initialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9269886A25667C2F00205699 /* Initialize.swift */; };
+		9269886E256BED3700205699 /* HeroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9269886D256BED3700205699 /* HeroController.swift */; };
+		92BDF9702577B8700031D134 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDF96F2577B8700031D134 /* ButtonController.swift */; };
+		92BDF9732577B8870031D134 /* InteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDF9722577B8870031D134 /* InteractionController.swift */; };
+		92E3AE22256D59E900F5B39F /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E3AE21256D59E900F5B39F /* StateController.swift */; };
 		92E9D74B2552F42D006E8B93 /* RogueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D74A2552F42D006E8B93 /* RogueApp.swift */; };
 		92E9D74D2552F42D006E8B93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D74C2552F42D006E8B93 /* ContentView.swift */; };
 		92E9D74F2552F42F006E8B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92E9D74E2552F42F006E8B93 /* Assets.xcassets */; };
 		92E9D7522552F42F006E8B93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92E9D7512552F42F006E8B93 /* Preview Assets.xcassets */; };
+		92E9D75D25553C6B006E8B93 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D75C25553C6B006E8B93 /* MessageView.swift */; };
+		92E9D76125553C7D006E8B93 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D76025553C7D006E8B93 /* MapView.swift */; };
+		92E9D76425553C91006E8B93 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D76325553C91006E8B93 /* StatusView.swift */; };
+		92E9D76725553CA8006E8B93 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D76625553CA8006E8B93 /* ButtonView.swift */; };
+		92E9D76C255563F3006E8B93 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D76B255563F3006E8B93 /* Primitives.swift */; };
+		92E9D76F25557EA5006E8B93 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D76E25557EA5006E8B93 /* Globals.swift */; };
+		92E9D7732555AA78006E8B93 /* InstanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9D7722555AA77006E8B93 /* InstanceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9269886A25667C2F00205699 /* Initialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialize.swift; sourceTree = "<group>"; };
+		9269886D256BED3700205699 /* HeroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroController.swift; sourceTree = "<group>"; };
+		92BDF96F2577B8700031D134 /* ButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonController.swift; sourceTree = "<group>"; };
+		92BDF9722577B8870031D134 /* InteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionController.swift; sourceTree = "<group>"; };
+		92E3AE21256D59E900F5B39F /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		92E9D7472552F42D006E8B93 /* Rogue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rogue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E9D74A2552F42D006E8B93 /* RogueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RogueApp.swift; sourceTree = "<group>"; };
 		92E9D74C2552F42D006E8B93 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		92E9D74E2552F42F006E8B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92E9D7512552F42F006E8B93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		92E9D7532552F42F006E8B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92E9D75C25553C6B006E8B93 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		92E9D76025553C7D006E8B93 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		92E9D76325553C91006E8B93 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		92E9D76625553CA8006E8B93 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		92E9D76B255563F3006E8B93 /* Primitives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
+		92E9D76E25557EA5006E8B93 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		92E9D7722555AA77006E8B93 /* InstanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +76,10 @@
 		92E9D7492552F42D006E8B93 /* Rogue */ = {
 			isa = PBXGroup;
 			children = (
+				92E9D7712555A960006E8B93 /* Controller */,
+				92E9D7692555426A006E8B93 /* Model */,
+				92E9D75B25553C33006E8B93 /* View */,
 				92E9D74A2552F42D006E8B93 /* RogueApp.swift */,
-				92E9D74C2552F42D006E8B93 /* ContentView.swift */,
 				92E9D74E2552F42F006E8B93 /* Assets.xcassets */,
 				92E9D7532552F42F006E8B93 /* Info.plist */,
 				92E9D7502552F42F006E8B93 /* Preview Content */,
@@ -67,6 +93,40 @@
 				92E9D7512552F42F006E8B93 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		92E9D75B25553C33006E8B93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92E9D74C2552F42D006E8B93 /* ContentView.swift */,
+				92E9D75C25553C6B006E8B93 /* MessageView.swift */,
+				92E9D76025553C7D006E8B93 /* MapView.swift */,
+				92E9D76325553C91006E8B93 /* StatusView.swift */,
+				92E9D76625553CA8006E8B93 /* ButtonView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92E9D7692555426A006E8B93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92E9D76B255563F3006E8B93 /* Primitives.swift */,
+				92E9D76E25557EA5006E8B93 /* Globals.swift */,
+				9269886A25667C2F00205699 /* Initialize.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92E9D7712555A960006E8B93 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92E9D7722555AA77006E8B93 /* InstanceController.swift */,
+				9269886D256BED3700205699 /* HeroController.swift */,
+				92E3AE21256D59E900F5B39F /* StateController.swift */,
+				92BDF96F2577B8700031D134 /* ButtonController.swift */,
+				92BDF9722577B8870031D134 /* InteractionController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +198,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E9D75D25553C6B006E8B93 /* MessageView.swift in Sources */,
+				92E3AE22256D59E900F5B39F /* StateController.swift in Sources */,
+				92E9D76125553C7D006E8B93 /* MapView.swift in Sources */,
+				92E9D76725553CA8006E8B93 /* ButtonView.swift in Sources */,
+				9269886E256BED3700205699 /* HeroController.swift in Sources */,
 				92E9D74D2552F42D006E8B93 /* ContentView.swift in Sources */,
+				92BDF9732577B8870031D134 /* InteractionController.swift in Sources */,
 				92E9D74B2552F42D006E8B93 /* RogueApp.swift in Sources */,
+				9269886B25667C2F00205699 /* Initialize.swift in Sources */,
+				92E9D76F25557EA5006E8B93 /* Globals.swift in Sources */,
+				92E9D76C255563F3006E8B93 /* Primitives.swift in Sources */,
+				92E9D7732555AA78006E8B93 /* InstanceController.swift in Sources */,
+				92E9D76425553C91006E8B93 /* StatusView.swift in Sources */,
+				92BDF9702577B8700031D134 /* ButtonController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
