@@ -102,13 +102,13 @@ class InteractionController {
                     if Int.random(in: 0...99) < 50 {
                         for y in (hero.actor.y - 1)...(hero.actor.y + 1) {
                             for x in (hero.actor.x - 1)...(hero.actor.x + 1) {
-                                if [PASS, CORPSE, CLIP].contains(instance.getMap()[y][x].ch) {
+                                if [PASS, CORPSE, CLIP].contains(instance.getTileFace(x: x, y: y)) {
                                     instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Green, state: state)
+                                    Thread.sleep(forTimeInterval: FLASH_DELAY)
                                     instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].cell)
                                     instance.setMonsterCell(i: i, value: instance.getTileFace(x: x, y: y))
                                     instance.setTileFace(x: x, y: y, ch: instance.getMonsters()[i].face)
                                     instance.setMonsterLocation(i: i, x: x, y: y)
-                                    Thread.sleep(forTimeInterval: FLASH_DELAY)
                                 }
                             }
                         }
@@ -1102,7 +1102,9 @@ class InteractionController {
     }
     
     private func deleteState() {
-        try! FileManager.default.removeItem(at: stateFileURL)
+        if FileManager.default.fileExists(atPath: stateFileURL.path) {
+            try! FileManager.default.removeItem(at: stateFileURL)
+        }
     }
     
     public func selectTarget() {
@@ -1652,9 +1654,12 @@ class InteractionController {
                     break
                 }
             }
+            
             if !didWarp {
                 warp(x1: hero.actor.x, y1: hero.actor.y, x2: hero.actor.x, y2: hero.actor.y, tX: hero.actor.x, tY: hero.actor.y)
             }
+            
+            instance.revealRoom(hero: hero)
         } else {
             state.addMessage(message: "Still recharging.")
         }
@@ -1687,43 +1692,30 @@ class InteractionController {
                     break
                 }
             }
+            
             if done {
                 break
             }
         }
         
         if tX == hero.actor.x && tY == hero.actor.y {
-            instance.markTile(x: hero.actor.x, y: hero.actor.y)
-            state.setFlashState(state: .Green)
-            instance.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + FLASH_DELAY) {
-                self.instance.setTileFace(x: self.hero.actor.x, y: self.hero.actor.y, ch: self.hero.actor.cell)
-                self.hero.actor.x = x
-                self.hero.actor.y = y
-                self.hero.actor.cell = PASS
-                self.instance.setTileFace(x: self.hero.actor.x, y: self.hero.actor.y, ch: self.hero.actor.face)
-                self.hero.setWarpCounter(value: 0)
-                self.instance.clearMapMarks()
-                self.state.setFlashState(state: .None)
-                self.instance.invalidate()
-                return
-            }
+            instance.flashTileFace(x: hero.actor.x, y: hero.actor.y, color: .Green, state: state)
+            instance.setTileFace(x: hero.actor.x, y: hero.actor.y, ch: hero.actor.cell)
+            hero.actor.x = x
+            hero.actor.y = y
+            hero.actor.cell = PASS
+            instance.setTileFace(x: hero.actor.x, y: hero.actor.y, ch: hero.actor.face)
+            hero.setWarpCounter(value: 0)
+            return
         }
         
         for i in 0..<instance.getMonsters().count {
             if tX == instance.getMonsters()[i].x && tY == instance.getMonsters()[i].y {
-                instance.markTile(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y)
-                state.setFlashState(state: .Green)
-                instance.invalidate()
-                DispatchQueue.main.asyncAfter(deadline: .now() + FLASH_DELAY) {
-                    self.instance.setTileFace(x: self.instance.getMonsters()[i].x, y: self.instance.getMonsters()[i].y, ch: self.instance.getMonsters()[i].cell)
-                    self.instance.setMonsterLocation(i: i, x: x, y: y)
-                    self.instance.setMonsterCell(i: i, value: PASS)
-                    self.instance.setTileFace(x: self.instance.getMonsters()[i].x, y: self.instance.getMonsters()[i].y, ch: self.instance.getMonsters()[i].face)
-                    self.instance.clearMapMarks()
-                    self.state.setFlashState(state: .None)
-                    self.instance.invalidate()
-                }
+                instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Green, state: state)
+                instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].cell)
+                instance.setMonsterLocation(i: i, x: x, y: y)
+                instance.setMonsterCell(i: i, value: PASS)
+                instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].face)
             }
         }
     }
@@ -1731,23 +1723,19 @@ class InteractionController {
     public func useLifeFlask() {
         if hero.getMedpackCharge() >= hero.medpackHealAmount {
             hero.setMedpackCharge(value: hero.getMedpackCharge() - hero.medpackHealAmount)
-            instance.markTile(x: hero.actor.x, y: hero.actor.y)
-            state.setFlashState(state: .Blue)
-            instance.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + FLASH_DELAY) {
-                var boostHeal: Int = 0
-                for r in self.hero.actor.rings {
-                    if r.name == "Ancient Ring" {
-                        boostHeal += self.hero.medpackHealAmount / 2
-                    }
+            instance.flashTileFace(x: hero.actor.x, y: hero.actor.y, color: .Blue, state: state)
+            
+            var boostHeal: Int = 0
+            
+            for r in hero.actor.rings {
+                if r.name == "Ancient Ring" {
+                    boostHeal += hero.medpackHealAmount / 2
                 }
-                self.hero.actor.lifeCurrent += self.hero.medpackHealAmount + boostHeal
-                self.instance.clearMapMarks()
-                self.state.setFlashState(state: .None)
-                self.state.clearMessages()
-                self.state.addMessage(message: "Gained \(self.hero.medpackHealAmount + boostHeal) life.")
-                self.instance.invalidate()
             }
+            hero.actor.lifeCurrent += hero.medpackHealAmount + boostHeal
+            
+            state.clearMessages()
+            state.addMessage(message: "Gained \(hero.medpackHealAmount + boostHeal) life.")
         } else {
             state.clearMessages()
             state.addMessage(message: "Your flask is empty.")
@@ -2040,26 +2028,20 @@ class InteractionController {
                         }
                     
                         instance.clearMapFrame()
-                        removeItemPointer(items: &self.hero.actor.inventory)
+                        removeItemPointer(items: &hero.actor.inventory)
                         instance.revertMap()
-                        instance.markTile(x: hero.actor.x, y: hero.actor.y)
-                        state.setFlashState(state: .Green)
-                        instance.invalidate()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + FLASH_DELAY) {
-                            self.instance.clearMapMarks()
-                            self.state.setFlashState(state: .None)
-                            self.state.clearMessages()
-                            self.hero.actor.cell = PASS
-                            self.hero.actor.x = 1
-                            self.hero.actor.y = self.instance.maxY - 1
-                            if self.hero.actor.lifeCurrent < 100 {
-                                self.hero.actor.lifeCurrent = 100
-                            }
-                            self.instance.setDepth(depth: 0)
-                            self.state.setState(state: .Move)
-                            self.instance.createTown(hero: self.hero)
-                            self.instance.invalidate()
+                        instance.flashTileFace(x: hero.actor.x, y: hero.actor.y, color: .Green, state: state)
+                        state.clearMessages()
+                        hero.actor.cell = PASS
+                        hero.actor.x = 1
+                        hero.actor.y = instance.maxY - 1
+                        if hero.actor.lifeCurrent < 100 {
+                            hero.actor.lifeCurrent = 100
                         }
+                        instance.setDepth(depth: 0)
+                        state.setState(state: .Move)
+                        instance.createTown(hero: hero)
+                        instance.invalidate()
                     default:
                         break
                 }
