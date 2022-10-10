@@ -245,7 +245,7 @@ class InteractionController {
                     result = findPath(x1: instance.getMonsters()[i].x, y1: instance.getMonsters()[i].y, x2: hero.actor.x, y2: hero.actor.y)
                 }
                 
-                if [PASS, CORPSE, CLIP].contains(instance.getMap()[result.nextY][result.nextX].ch) {
+                if [PASS, CORPSE, CLIP].contains(instance.getTileFace(x: result.nextX, y: result.nextY)) {
                     instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].cell)
                     instance.setMonsterCell(i: i, value: instance.getTileFace(x: result.nextX, y: result.nextY))
                     instance.setTileFace(x: result.nextX, y: result.nextY, ch: instance.getMonsters()[i].face)
@@ -287,7 +287,7 @@ class InteractionController {
                     break
             }
             
-            if [PASS, CORPSE, CLIP].contains(instance.getMap()[instance.getMonsters()[i].y + mY][instance.getMonsters()[i].x + mX].ch) {
+            if [PASS, CORPSE, CLIP].contains(instance.getTileFace(x: instance.getMonsters()[i].x + mX, y: instance.getMonsters()[i].y + mY)) {
                 instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].cell)
                 instance.setMonsterCell(i: i, value: instance.getTileFace(x: instance.getMonsters()[i].x + mX, y: instance.getMonsters()[i].y + mY))
                 instance.setTileFace(x: instance.getMonsters()[i].x + mX, y: instance.getMonsters()[i].y + mY, ch: instance.getMonsters()[i].face)
@@ -1175,11 +1175,11 @@ class InteractionController {
                 return (nextX: cX, nextY: cY, isConnected: true)
             }
             
-            if mode == .Clear && (instance.getMap()[cY][cX].ch == WALL || instance.getMap()[cY][cX].ch == DOOR || instance.isMonster(tileFace: instance.getMap()[cY][cX].ch)) {
+            if mode == .Clear && ([WALL, DOOR].contains(instance.getTileFace(x: cX, y: cY)) || instance.isMonster(tileFace: instance.getTileFace(x: cX, y: cY))) {
                 return (nextX: cX, nextY: cY, isConnected: false)
             }
             
-            if mode == .Move && (instance.getMap()[cY][cX].ch == WALL || instance.getMap()[cY][cX].ch == DOOR || instance.getMap()[cY][cX].ch == CHEST || instance.isMonster(tileFace: instance.getMap()[cY][cX].ch)) {
+            if mode == .Move && ([WALL, DOOR, CHEST].contains(instance.getTileFace(x: cX, y: cY)) || instance.isMonster(tileFace: instance.getTileFace(x: cX, y: cY))) {
                 return (nextX: cX, nextY: cY, isConnected: false)
             }
             
@@ -1987,7 +1987,7 @@ class InteractionController {
                                     for m in 0..<instance.getMonsters().count {
                                         if instance.getMonsters()[m].x == k && instance.getMonsters()[m].y == j {
                                             instance.setMonsterBlindCounter(i: m, value: 0)
-                                            if instance.getMap()[j][k].ch != WALL {
+                                            if instance.getTileFace(x: k, y: j) != WALL {
                                                 instance.setTileFace(x: k, y: j, ch: "\u{2588}")
                                                 instance.markTile(x: k, y: j)
                                                 state.setFlashState(state: .White)
