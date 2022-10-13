@@ -15,7 +15,7 @@ struct ContentView: View {
                 StatusView()
                 ButtonView()
                 HStack {
-                    Text("1.0.26.2")
+                    Text("1.0.26.3")
                         .font(.system(size: 8))
                         .foregroundColor(.gray)
                     Spacer()
