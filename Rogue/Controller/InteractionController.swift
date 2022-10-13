@@ -77,19 +77,18 @@ class InteractionController {
                 continue
             }
             
-            if instance.getMonsters()[i].paralyzeTimer < instance.getMonsters()[i].paralyzeDuration {
+            if instance.isMonsterParalyzed(i: i) {
                 instance.setMonsterParalyzeCounter(i: i, value: instance.getMonsters()[i].paralyzeTimer + 1)
                 continue
             }
             
-            var isMonsterBlind: Bool = false, done: Bool = false
+            var done: Bool = false
             
-            if instance.getMonsters()[i].blindTimer < instance.getMonsters()[i].blindDuration {
+            if instance.isMonsterBlind(i: i) {
                 instance.setMonsterBlindCounter(i: i, value: instance.getMonsters()[i].blindTimer + 1)
-                isMonsterBlind = true
             }
             
-            if ((rX1...rX2).contains(instance.getMonsters()[i].x) && (rY1...rY2).contains(instance.getMonsters()[i].y) || instance.getMonsters()[i].isPursuit) && !isMonsterBlind { // aggro
+            if ((rX1...rX2).contains(instance.getMonsters()[i].x) && (rY1...rY2).contains(instance.getMonsters()[i].y) || instance.getMonsters()[i].isPursuit) && !instance.isMonsterBlind(i: i) { // aggro
                 if !instance.getMonsters()[i].isPursuit {
                     instance.setMonsterPursuitState(i: i, value: true)
                     if instance.getMonsters()[i].name == MonsterTypes[MonsterTypes.count - 1].name {
@@ -677,7 +676,7 @@ class InteractionController {
             
             if hero.actor.chest.name == "Armor of the Sun" {
                 if Int.random(in: 0...99) < 20 {
-                    if hero.actor.blindTimer >= hero.actor.blindDuration && !hero.isBlindImmune() {
+                    if !hero.isBlind() && !hero.isBlindImmune() {
                         hero.actor.blindTimer = 0
                         state.addMessage(message: "The light shines!")
                     }
@@ -2480,7 +2479,7 @@ class InteractionController {
                 }
             }
             
-            writeText(x: x + tX, y: iY + tY, text: (items[i].isPointed ? ">" : " ") + (!slot.isEmpty ? "\(slot): " : "") + items[i].name + ([ItemTag.Ammo, ItemTag.Flash, ItemTag.Home].contains(items[i].tag) ? " (\(items[i].amount))" : "") + (state.getState() == .Shop ? " - \(items[i].price * items[i].amount)g" : ""))
+            writeText(x: x + tX, y: iY + tY, text: (items[i].isPointed ? ">" : " ") + (!slot.isEmpty ? "\(slot): " : "") + (items[i].name != EMPTY ? items[i].name : "") + ([ItemTag.Ammo, ItemTag.Flash, ItemTag.Home].contains(items[i].tag) ? " (\(items[i].amount))" : "") + (state.getState() == .Shop ? " - \(items[i].price * items[i].amount)g" : ""))
             
             iY += 1
         }

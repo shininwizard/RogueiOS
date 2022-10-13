@@ -227,14 +227,14 @@ class ButtonAction1: ButtonAction {
     func tap(globalState: GlobalState, interaction: InteractionController) {
         switch globalState {
             case .Move:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }
                 interaction.getStateController().setState(state: .Heal)
                 interaction.getStateController().addMessage(message: "Use life flask?")
             case .Inventory:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     return
                 }
                 interaction.equipItem()
@@ -254,7 +254,7 @@ class ButtonAction2: ButtonAction {
     func tap(globalState: GlobalState, interaction: InteractionController) {
         switch globalState {
             case .Move:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }
@@ -277,19 +277,19 @@ class ButtonAction3: ButtonAction {
     func tap(globalState: GlobalState, interaction: InteractionController) {
         switch globalState {
             case .Move:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }
                 interaction.getStateController().setState(state: .Warp)
                 interaction.getStateController().addMessage(message: "Use warp crystal?")
             case .Inventory:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     return
                 }
                 interaction.useItem()
             case .Equipment:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     return
                 }
                 interaction.unequipItem()
@@ -313,7 +313,7 @@ class ButtonAction4: ButtonAction {
             case .Warp:
                 interaction.useWarpCrystal()
             case .Move:
-                if interaction.getHeroController().isBlind() && !interaction.getHeroController().isBlindImmune() {
+                if interaction.getHeroController().isBlind() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }
@@ -339,7 +339,7 @@ class ButtonAction5: ButtonAction {
     func tap(globalState: GlobalState, interaction: InteractionController) {
         switch globalState {
             case .Move:
-                if interaction.getHeroController().isBlind() && !interaction.getHeroController().isBlindImmune() {
+                if interaction.getHeroController().isBlind() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }
@@ -347,7 +347,7 @@ class ButtonAction5: ButtonAction {
                 interaction.getInstanceController().bufferMap()
                 interaction.displayInventoryItems()
             case .Inventory:
-                if interaction.getHeroController().isParalyzed() && !interaction.getHeroController().isParalyzeImmune() {
+                if interaction.getHeroController().isParalyzed() {
                     return
                 }
                 interaction.dropItem()
@@ -361,7 +361,7 @@ class ButtonAction6: ButtonAction {
     func tap(globalState: GlobalState, interaction: InteractionController) {
         switch globalState {
             case .Move:
-                if interaction.getHeroController().isBlind() && !interaction.getHeroController().isBlindImmune() {
+                if interaction.getHeroController().isBlind() {
                     interaction.getStateController().setState(state: .Cancel)
                     return
                 }

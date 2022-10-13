@@ -348,10 +348,18 @@ class InstanceController: ObservableObject {
         monsters[i].lifeCurrent = value
     }
 
+    public func isMonsterBlind(i: Int) -> Bool {
+        return monsters[i].blindTimer < monsters[i].blindDuration
+    }
+    
     public func setMonsterBlindCounter(i: Int, value: Int) {
         monsters[i].blindTimer = value
     }
 
+    public func isMonsterParalyzed(i: Int) -> Bool {
+        return monsters[i].paralyzeTimer < monsters[i].paralyzeDuration
+    }
+    
     public func setMonsterParalyzeCounter(i: Int, value: Int) {
         monsters[i].paralyzeTimer = value
     }

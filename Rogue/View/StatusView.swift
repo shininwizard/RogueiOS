@@ -21,7 +21,7 @@ struct StatusView: View {
                 TextView(text: "Life Flask", color: setLifeFlaskColor(hero: hero))
             }
             HStack {
-                TextView(text: "\(hero.actor.ranged.name) (\(hero.actor.ammo))", color: Color(UIColor.lightGray))
+                TextView(text: "\(hero.actor.ranged.name != EMPTY ? hero.actor.ranged.name + " (\(hero.actor.ammo))" : "")", color: Color(UIColor.lightGray))
                 Spacer()
                 TextView(text: "Warp", color: setWarpColor(hero: hero))
             }
