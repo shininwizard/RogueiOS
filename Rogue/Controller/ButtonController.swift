@@ -25,7 +25,7 @@ class ButtonController {
 
     public func tap(globalState: GlobalState) {
         if globalState != .End {
-            if ![GlobalState.Heal, GlobalState.Warp, GlobalState.Ring, GlobalState.Chest, GlobalState.Info].contains(globalState) {
+            if ![GlobalState.Heal, GlobalState.Warp, GlobalState.Ring, GlobalState.Chest, GlobalState.Info, GlobalState.Pickup].contains(globalState) {
                 state.clearMessages()
             }
             
