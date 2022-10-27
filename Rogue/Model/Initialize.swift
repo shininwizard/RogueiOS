@@ -154,7 +154,7 @@ let EquipTypes: [Equip] = [
     Equip(name: "dark gauntlets", type: EquipType.Gloves, armorValue: 25, tier: 6, description: ""),
     Equip(name: "shadow gauntlets", type: EquipType.Gloves, armorValue: 27, tier: 7, description: ""),
     Equip(name: "Great Lord Bracelet", type: EquipType.Gloves, armorValue: 30, tier: 10, description: "Melee damage leeched as life"), // 20% leech
-    Equip(name: "Vanquisher Mittens", type: EquipType.Gloves, armorValue: 40, tier: 1, description: "Additional bare-handed damage"), // 8-10 damage
+    Equip(name: "Vanquisher Mittens", type: EquipType.Gloves, armorValue: 40, tier: 10, description: "Additional bare-handed damage"), // 8-10 damage
     Equip(name: "Gauntlets of Thorns", type: EquipType.Gloves, armorValue: 35, tier: 10, description: "Enemy takes damage on attack"), // 5-8 damage
     
     Equip(name: "sorcerer boots", type: EquipType.Legs, armorValue: 4, tier: 1, description: ""),

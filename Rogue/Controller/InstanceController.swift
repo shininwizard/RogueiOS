@@ -814,31 +814,34 @@ class InstanceController: ObservableObject {
         let rng: Int = Int.random(in: 0..<100)
         
         if rng < 10 {
-            chestCount = 3
+            chestCount = 1
         }
         if rng > 90 {
-            chestCount = 1
+            chestCount = 3
         }
         
         while i < chestCount {
             let x: Int = Int.random(in: 1..<maxX)
             let y: Int = Int.random(in: 1..<maxY)
+            var goodPlace: Bool = true
             
             for j in 0..<rooms.count {
-                if ((rooms[j].x1 + 1)...(rooms[j].x2 - 1)).contains(x) && ((rooms[j].y1 + 1)...(rooms[j].y2 - 1)).contains(y) && map[y][x].ch == PASS {
+                if ((rooms[j].x1 + 1)...(rooms[j].x2 - 1)).contains(x) && ((rooms[j].y1 + 1)...(rooms[j].y2 - 1)).contains(y) && getTileFace(x: x, y: y) == PASS {
                     for cX in (x - 1)...(x + 1) {
                         for cY in (y - 1)...(y + 1) {
-                            if map[cY][cX].ch == DOOR {
-                                continue
+                            if getTileFace(x: cX, y: cY) == DOOR {
+                                goodPlace = false
                             }
                         }
                     }
-                    map[y][x].ch = CHEST
-                    generateItem(x: x, y: y, mode: .Chest)
+                    if goodPlace {
+                        setTileFace(x: x, y: y, ch: CHEST)
+                        generateItem(x: x, y: y, mode: .Chest)
+                    }
                 }
             }
             
-            if map[y][x].ch == CHEST {
+            if getTileFace(x: x, y: y) == CHEST {
                 i += 1
             }
         }

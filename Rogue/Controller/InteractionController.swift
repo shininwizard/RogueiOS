@@ -2071,20 +2071,27 @@ class InteractionController {
         }
 
         if hero.actor.inventory.count == hero.inventoryCapacity && selectedItem.tag == .Ranged {
-            var ammoName: String = ""
+            var ammoName: String = "", ammoWeapon: String = ""
             var found: Bool = false
             
             for ammo in AmmoTypes {
                 if selectedItem.name.lowercased().contains(ammo.weapon.lowercased()) {
                     ammoName = ammo.name
+                    ammoWeapon = ammo.weapon
                     break
                 }
             }
             
-            for item in hero.actor.inventory {
-                if item.name == ammoName {
-                    found = true
-                    break
+            if hero.actor.ranged.name.lowercased().contains(ammoWeapon.lowercased()) {
+                found = true
+            }
+            
+            if !found {
+                for item in hero.actor.inventory {
+                    if item.name == ammoName {
+                        found = true
+                        break
+                    }
                 }
             }
             
