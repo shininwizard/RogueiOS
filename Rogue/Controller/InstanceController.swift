@@ -67,16 +67,26 @@ class InstanceController: ObservableObject {
         var itemTier: Int = 0
         
         switch depth {
-            case 01...10: itemTier = 1
-            case 11...20: itemTier = 2
-            case 21...30: itemTier = 3
-            case 31...40: itemTier = 4
-            case 41...50: itemTier = 5
-            case 51...60: itemTier = 6
-            case 61...70: itemTier = 7
-            case 71...80: itemTier = 8
-            case 81...maxDepth: itemTier = 9
-            default: break
+            case 01...10:
+                itemTier = 1
+            case 11...20:
+                itemTier = 2
+            case 21...30:
+                itemTier = 3
+            case 31...40:
+                itemTier = 4
+            case 41...50:
+                itemTier = 5
+            case 51...60:
+                itemTier = 6
+            case 61...70:
+                itemTier = 7
+            case 71...80:
+                itemTier = 8
+            case 81...maxDepth:
+                itemTier = 9
+            default:
+                break
         }
         
         while mode == .Monster && (453...759).contains(rng) {

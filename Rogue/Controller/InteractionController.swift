@@ -102,8 +102,10 @@ class InteractionController {
                         for y in (hero.actor.y - 1)...(hero.actor.y + 1) {
                             for x in (hero.actor.x - 1)...(hero.actor.x + 1) {
                                 if [PASS, CORPSE, CLIP].contains(instance.getTileFace(x: x, y: y)) {
-                                    instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Green, state: state)
-                                    Thread.sleep(forTimeInterval: FLASH_DELAY)
+                                    if !hero.isBlind() {
+                                        instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Green, state: state)
+                                        Thread.sleep(forTimeInterval: FLASH_DELAY)
+                                    }
                                     instance.setTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, ch: instance.getMonsters()[i].cell)
                                     instance.setMonsterCell(i: i, value: instance.getTileFace(x: x, y: y))
                                     instance.setTileFace(x: x, y: y, ch: instance.getMonsters()[i].face)
@@ -142,7 +144,9 @@ class InteractionController {
                             
                             hero.actor.lifeBefore = hero.actor.lifeCurrent
                             hero.actor.lifeCurrent -= damage
-                            instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Red, state: state)
+                            if !hero.isBlind() {
+                                instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Red, state: state)
+                            }
                             
                             if hero.actor.lifeCurrent <= 0 && !hero.isRingOfSacrificeEquipped(state: state) {
                                 die()
@@ -195,7 +199,9 @@ class InteractionController {
                                     
                                     hero.actor.lifeBefore = hero.actor.lifeCurrent
                                     hero.actor.lifeCurrent -= damage
-                                    instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Red, state: state)
+                                    if !hero.isBlind() {
+                                        instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Red, state: state)
+                                    }
                                     
                                     if hero.actor.lifeCurrent <= 0 && !hero.isRingOfSacrificeEquipped(state: state) {
                                         die()
@@ -203,7 +209,9 @@ class InteractionController {
                                     }
                                     
                                     if instance.getMonsters()[i].face == "v" {
-                                        instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Blue, state: state)
+                                        if !hero.isBlind() {
+                                            instance.flashTileFace(x: instance.getMonsters()[i].x, y: instance.getMonsters()[i].y, color: .Blue, state: state)
+                                        }
                                         instance.setMonsterLife(i: i, value: instance.getMonsters()[i].lifeCurrent + Int(Double(damage) * 0.3))
                                     }
                                     
