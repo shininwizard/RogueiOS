@@ -15,7 +15,7 @@ struct ContentView: View {
                 StatusView()
                 ButtonView()
                 HStack {
-                    Text("1.0.26.6")
+                    Text("1.0.26.7")
                         .font(.system(size: 8))
                         .foregroundColor(.gray)
                     Spacer()
@@ -73,9 +73,12 @@ struct ContentView: View {
                 }
             }
             
-            if [.Shop, .Inventory, .StashTab1, .StashTab2, .Info, .Equipment, .Ring, .Ground, .Waypoint].contains(state.getState()) {
+            if [GlobalState.Shop, GlobalState.Inventory, GlobalState.StashTab1, GlobalState.StashTab2, GlobalState.Info, GlobalState.Equipment, GlobalState.Ring, GlobalState.Ground, GlobalState.Waypoint].contains(state.getState()) {
                 map = instance.getBufferedMap()
             }
+            
+            hero.actor.dX = 0
+            hero.actor.dY = 0
             
             let saveData: SaveData = SaveData(depth: instance.getDepth(), progression: hero.getProgression(), medpackCharge: hero.getMedpackCharge(), warpCounter: hero.getWarpCounter(), hero: hero.actor, map: map, rooms: instance.getRooms(), items: instance.getItems(), monsters: instance.getMonsters())
             

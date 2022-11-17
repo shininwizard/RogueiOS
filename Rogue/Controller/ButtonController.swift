@@ -25,7 +25,7 @@ class ButtonController {
 
     public func tap(globalState: GlobalState) {
         if globalState != .End {
-            if ![GlobalState.Heal, GlobalState.Warp, GlobalState.Ring, GlobalState.Chest, GlobalState.Info, GlobalState.Pickup].contains(globalState) {
+            if ![GlobalState.Heal, GlobalState.Warp, GlobalState.Ring, GlobalState.Chest, GlobalState.Info, GlobalState.Pickup, GlobalState.Target, GlobalState.Inspect].contains(globalState) {
                 state.clearMessages()
             }
             
@@ -322,6 +322,7 @@ class ButtonAction4: ButtonAction {
                 interaction.showHighlightedTileInfo()
                 interaction.getStateController().setState(state: .Cancel)
             case .Target:
+                interaction.getStateController().clearMessages()
                 interaction.switchTarget()
             case .Pickup:
                 interaction.confirmPickup()
