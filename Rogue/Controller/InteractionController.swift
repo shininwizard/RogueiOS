@@ -863,10 +863,10 @@ class InteractionController {
                 var gotWeapon: Bool = false, gotAmmo: Bool = false
                 
                 for item in hero.actor.inventory {
-                    if item.name == weapon {
+                    if instance.getItems()[itemIndex].name == item.name {
                         gotWeapon = true
                     }
-                    if item.name == ammoName {
+                    if ammoName == item.name {
                         gotAmmo = true
                     }
                 }
@@ -877,7 +877,9 @@ class InteractionController {
             }
             
             if !found {
+                state.clearMessages()
                 state.addMessage(message: "Can't carry any more.")
+                state.setState(state: .Cancel)
                 return
             }
             
@@ -899,7 +901,11 @@ class InteractionController {
                 }
                 
                 for item in hero.actor.inventory {
-                    if item.name == ammoName {
+                    if ammoName == item.name {
+                        found = true
+                        break
+                    }
+                    if instance.getItems()[itemIndex].name == item.name {
                         found = true
                         break
                     }
@@ -911,7 +917,9 @@ class InteractionController {
             }
             
             if !found {
+                state.clearMessages()
                 state.addMessage(message: "Can't carry any more.")
+                state.setState(state: .Cancel)
                 return
             }
             
