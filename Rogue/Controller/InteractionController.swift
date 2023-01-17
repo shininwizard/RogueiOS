@@ -127,6 +127,7 @@ class InteractionController {
                 for r in RangedTypes {
                     if instance.getMonsters()[i].ranged.name == r.name && r.name != EMPTY {
                         let result = connectXY(x1: instance.getMonsters()[i].x, y1: instance.getMonsters()[i].y, x2: hero.actor.x, y2: hero.actor.y, mode: .Clear)
+                        
                         if result.isConnected {
                             var damage: Int = monsterDamage(i: i, damageType: .Ranged)
                             

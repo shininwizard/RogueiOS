@@ -63,7 +63,7 @@ class InstanceController: ObservableObject {
     }
     
     public func generateItem(x: Int, y: Int, mode: ItemGenerationMode) {
-        var rng: Int = Int.random(in: 0...906), moRng: Int = 0
+        var rng: Int = Int.random(in: 0...458), moRng: Int = 0
         var itemTier: Int = 0
         
         switch depth {
@@ -89,43 +89,43 @@ class InstanceController: ObservableObject {
                 break
         }
         
-        while mode == .Monster && (453...759).contains(rng) {
-            rng = Int.random(in: 0...906)
+        while mode == .Monster && (228...379).contains(rng) {
+            rng = Int.random(in: 0...458)
         }
         
         switch rng {
-            case 0...150:
+            case 0...75:
                 moRng = Int.random(in: 1..<RangedTypes.count)
                 while RangedTypes[moRng].tier > itemTier {
                     moRng = Int.random(in: 1..<RangedTypes.count)
                 }
                 addItem(item: Item(x: x, y: y, name: RangedTypes[moRng].name, amount: 1, tag: ItemTag.Ranged, price: 0, isMarked: false, isPointed: false, description: RangedTypes[moRng].description))
-            case 151...301:
+            case 76...151:
                 moRng = Int.random(in: 1..<MeleeTypes.count)
                 while MeleeTypes[moRng].tier > itemTier {
                     moRng = Int.random(in: 1..<MeleeTypes.count)
                 }
                 addItem(item: Item(x: x, y: y, name: MeleeTypes[moRng].name, amount: 1, tag: ItemTag.Melee, price: 0, isMarked: false, isPointed: false, description: MeleeTypes[moRng].description))
-            case 302...452:
+            case 152...227:
                 moRng = Int.random(in: 1..<AmmoTypes.count)
                 addItem(item: Item(x: x, y: y, name: AmmoTypes[moRng].name, amount: AmmoTypes[moRng].quantity, tag: ItemTag.Ammo, price: 0, isMarked: false, isPointed: false, description: ""))
-            case 453...603:
+            case 228...303:
                 addItem(item: Item(x: x, y: y, name: "orb of life", amount: 1, tag: ItemTag.LifeOrb, price: 0, isMarked: false, isPointed: false, description: ""))
-            case 604...759:
+            case 304...379:
                 addItem(item: Item(x: x, y: y, name: "gold cache", amount: 1, tag: ItemTag.GoldCache, price: 0, isMarked: false, isPointed: false, description: ""))
-            case 760...903:
+            case 380...455:
                 moRng = Int.random(in: 1..<EquipTypes.count)
                 while EquipTypes[moRng].tier > itemTier {
                     moRng = Int.random(in: 1..<EquipTypes.count)
                 }
                 addItem(item: Item(x: x, y: y, name: EquipTypes[moRng].name, amount: 1, tag: ItemTag.Equip, price: 0, isMarked: false, isPointed: false, description: EquipTypes[moRng].description))
-            case 904:
+            case 456:
                 moRng = Int.random(in: 1..<EquipTypes.count)
                 while EquipTypes[moRng].type != EquipType.Ring {
                     moRng = Int.random(in: 1..<EquipTypes.count)
                 }
                 addItem(item: Item(x: x, y: y, name: EquipTypes[moRng].name, amount: 1, tag: ItemTag.Equip, price: 0, isMarked: false, isPointed: false, description: EquipTypes[moRng].description))
-            case 905:
+            case 457:
                 let uRng: Int = Int.random(in: 0...5)
                 switch uRng {
                     case 0:
@@ -167,7 +167,7 @@ class InstanceController: ObservableObject {
                     default:
                         break
                 }
-            case 906:
+            case 458:
                 addItem(item: Item(x: x, y: y, name: "homeward scroll", amount: 1, tag: ItemTag.Home, price: 0, isMarked: false, isPointed: false, description: ""))
             default:
                 break
